@@ -1,0 +1,14 @@
+.template-container {
+  display: flex;
+}
+
+.products-view-section {
+  width: 75vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+h2 {
+  padding: 2em 0;
+}
