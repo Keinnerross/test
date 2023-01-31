@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Espartan-pomodoro-app/static/css/main.06aeb551.css",
+    "main.js": "/Espartan-pomodoro-app/static/js/main.59c4eb98.js",
+    "index.html": "/Espartan-pomodoro-app/index.html",
+    "main.06aeb551.css.map": "/Espartan-pomodoro-app/static/css/main.06aeb551.css.map",
+    "main.59c4eb98.js.map": "/Espartan-pomodoro-app/static/js/main.59c4eb98.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.06aeb551.css",
+    "static/js/main.59c4eb98.js"
+  ]
+}
