@@ -1,5 +1,8 @@
 .template-container {
+  width: 100vw;
+  max-width: 100%;
   display: flex;
+  justify-content: center;
 }
 
 .products-view-section {
@@ -7,8 +10,4 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-}
-
-h2 {
-  padding: 2em 0;
 }

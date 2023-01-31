@@ -1,40 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "./productCard";
-import "../stylesheets/template.css";
 import SettingProductCard from "./settingProductCard";
+import ShoppingCart from "./shoppingCart.jsx";
+import { FaShoppingBag } from "react-icons/fa";
+import "../stylesheets/template.css";
+
 const Template = () => {
-  const [products, setProucts] = useState([
-    { title: "Dulcito de Coco", cantidad: 1, fontSize: 14 },
-    { title: "Dulcito de Mango", cantidad: 1, fontSize: 14 },
-    { title: "Dulcito de Piña", cantidad: 1, fontSize: 14 },
-    { title: "Dulcito de Plátano", cantidad: 1, fontSize: 14 },
-    { title: "Dulcito de Fresa", cantidad: 1, fontSize: 14 },
-    { title: "Dulcito de Limón", cantidad: 1, fontSize: "24px" },
+  const [products, setProducts] = useState([
+    { title: "Dulcito de Coco", quantity: 1, fontSize: 22 },
+    { title: "Dulcito de Mango", quantity: 5, fontSize: 22 },
+    { title: "Dulcito de Piña", quantity: 1, fontSize: 22 },
+    { title: "Dulcito de Plátano", quantity: 1, fontSize: 22 },
+    { title: "Dulcito de Fresa", quantity: 1, fontSize: 22 },
+    { title: "Dulcito de Limón", quantity: 1, fontSize: 22 },
   ]);
 
   const [productInput, setProductInput] = useState("");
   const [rangeInput, setRangeInput] = useState("");
-  const [productSelect, setProductSelect] = useState("0");
+  const [productId, setProductId] = useState("0");
+  const [settingActive, setSettingActive] = useState(false);
+  const [productCart, setProductCart] = useState(0);
 
-  //**Control del producto, como obejto CAPTURAR ID */
-  const productActive = (id) => {
-    setProductSelect(id);
-    console.log(id);
+  const toggleActive = (id) => {
+    if (id >= 0 && settingActive) {
+      setSettingActive(true);
+    } else {
+      setSettingActive(!settingActive);
+    }
+    setProductId(id);
   };
 
-  /**VALOR DEL INPUT CUANDO SE SELECCIONA */
-
   useEffect(() => {
-    const productTitle = products[productSelect].title;
-    const productSize = products[productSelect].fontSize;
-    setProductInput(productTitle);
-  }, [productSelect]);
-
-  /**Control de la info del input */
+    if (productId >= 0) {
+      const productTitle = products[productId].title;
+      const productSize = products[productId].fontSize;
+      setProductInput(productTitle);
+      setRangeInput(productSize);
+    }
+  }, [productId]);
 
   const handleSettingChange = (value, range) => {
     setProductInput(value);
-    products[productSelect].title = value;
+    setRangeInput(range);
+    products[productId].title = value;
+    products[productId].fontSize = range;
+  };
+
+  const addCart = (quantity) => {
+    console.log(productInput);
+    setProductCart((prevQuantity) => Number(prevQuantity) + Number(quantity));
   };
 
   return (
@@ -42,10 +56,15 @@ const Template = () => {
       <SettingProductCard
         inputChange={handleSettingChange}
         inputValue={productInput}
+        rangeValue={rangeInput}
+        isActive={settingActive}
+        toggle={toggleActive}
       />
 
-      <div className={"products-view-section"}>
-        <h2>Dango Store</h2>
+      <div className="template-section">
+        <h1>
+          <FaShoppingBag fill="" /> Dango<span className="resalt">Store</span>
+        </h1>
         <div className="products-view-section">
           {products.map((product, i) => (
             <ProductCard
@@ -54,11 +73,13 @@ const Template = () => {
               title={product.title}
               fontSize={product.fontSize}
               price="$12.900"
-              handleSetting={() => productActive(i)}
+              handleSetting={() => toggleActive(i)}
+              onSubmit={addCart}
             />
           ))}
         </div>
       </div>
+      <ShoppingCart quantity={productCart} />
     </div>
   );
 };

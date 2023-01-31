@@ -1,19 +1,28 @@
-import { useEffect, useState } from "react";
 import "../stylesheets/settingProductCard.css";
 
-const SettingProductCard = ({ inputChange, inputValue, rangeValue }) => {
+const SettingProductCard = ({
+  inputChange,
+  inputValue,
+  rangeValue,
+  isActive,
+  toggle,
+}) => {
   return (
-    <div className="setting-container">
+    <div className={isActive ? "setting-container" : "hidden"}>
       <div className="setting-section">
         <h2>Editar Producto</h2>
-        <form action="">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <div className="form-section">
             <label>Título del Producto</label>
             <input
               className="product-title-input"
               type="text"
               onChange={(e) => inputChange(e.target.value)}
-              value={inputValue}
+              value={inputValue || ""}
             />
           </div>
           <div className="form-section">
@@ -22,10 +31,14 @@ const SettingProductCard = ({ inputChange, inputValue, rangeValue }) => {
               className="product-size-title-range"
               type="range"
               onChange={(e) => inputChange(inputValue, e.target.value)}
-              value={rangeValue}
+              value={rangeValue || 22}
             />
           </div>
-          <button>Listo</button>
+          <div className="controls-section">
+            <button className="button-save" onClick={() => toggle()}>
+              Save
+            </button>
+          </div>
         </form>
       </div>
     </div>

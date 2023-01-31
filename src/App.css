@@ -6,12 +6,22 @@
   border: none;
   outline: none;
   font-family: sans-serif;
+  color: rgb(39, 39, 39);
 }
-
+p {
+  color: #667399;
+  font-weight: 100;
+  font-size: 14px;
+}
 .hidden {
   display: none;
 }
 
-.products-view-active {
-  margin-left: 25vw;
+.resalt {
+  font-weight: 600;
+}
+
+h1,
+h2 {
+  padding: 50px 0;
 }

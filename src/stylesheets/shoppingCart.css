@@ -1,0 +1,29 @@
+.cart-container {
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  bottom: 3em;
+  right: 0;
+  background-color: white;
+  border-radius: 7px 0 0 7px;
+  border: 1.5px solid rgb(200, 200, 200);
+  cursor: pointer;
+}
+.quantity {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: white;
+  position: absolute;
+  background-color: #fc6f00;
+  padding: 10px;
+  top: -15px;
+  left: -15px;
+  border-radius: 100%;
+}
+.cart-section {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
